@@ -1,0 +1,20 @@
+{
+    "name": "peterfox/hexavel-components",
+    "description": "Components for Hexavel edition of Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Fox",
+            "email": "peter.fox@peterfox.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hexavel\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.1.*"
+    }
+}
