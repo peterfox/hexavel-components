@@ -24,7 +24,7 @@ abstract class RepositoryProvider extends ServiceProvider
 
         foreach ($models as $repository => $model) {
             $this->app->singleton($repository, function ($app) use ($repository, $model) {
-                return new $repository(new $model());
+                return new $repository($app->make(get_class($model)));
             });
         }
 

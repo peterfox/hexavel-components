@@ -28,12 +28,20 @@ abstract class EloquentRepository
     public abstract function getModel();
 
     /**
-     * @param $id
+     * @param int|string|array $id
      * @return Model
      */
     public function findById($id)
     {
         return $this->model->find($id);
+    }
+
+    /**
+     * @param Model $model
+     */
+    public function create()
+    {
+        return new ${$this->model}();
     }
 
     /**
