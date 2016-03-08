@@ -8,8 +8,6 @@
 
 namespace Hexavel\Repository;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class EloquentRepository
@@ -30,32 +28,16 @@ abstract class EloquentRepository
     public abstract function getModel();
 
     /**
-     * @return Builder
-     */
-    public function getQueryBuilder()
-    {
-        return $this->model->query();
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrimaryKeyName()
-    {
-        return $this->model->getKeyName();
-    }
-
-    /**
      * @param int|string|array $id
      * @return Model
      */
     public function findById($id)
     {
-        $this->getQueryBuilder()->where($this->getPrimaryKeyName(), null, $id)->first();
+        return $this->model->find($id);
     }
 
     /**
-     * @return Model
+     * @param Model $model
      */
     public function create()
     {
@@ -82,29 +64,11 @@ abstract class EloquentRepository
         });
     }
 
-    /**
-     * @param Model $model
-     * @param callable $modelFunction
-     * @return bool
-     */
-    protected function performAction($model, callable $modelFunction)
+    private function performAction($model, callable $modelFunction)
     {
         if (is_a($model, $this->getModel())) {
             call_user_func($modelFunction, $model);
             return true;
         }
-        return false;
-    }
-
-    /**
-     * @param Model|Collection|null $result
-     * @return array
-     */
-    protected function returnArray($result)
-    {
-        if ($result instanceof Collection) {
-            return $result->toArray();
-        }
-        return $result;
     }
 }

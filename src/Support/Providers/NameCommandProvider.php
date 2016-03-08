@@ -15,6 +15,8 @@ use Illuminate\Support\ServiceProvider;
 
 class NameCommandProvider extends ServiceProvider
 {
+    use OverridingCommandTrait;
+
     /**
      * Register any other events for your application.
      *
@@ -23,9 +25,7 @@ class NameCommandProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
-        $events->listen(ArtisanStarting::class, function ($event) {
-            $event->artisan->resolve('command.hexapp.name');
-        }, -1);
+        $this->overrideCommand($events, 'command.hexapp.name');
     }
 
     /**
