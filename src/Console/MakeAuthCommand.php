@@ -36,7 +36,7 @@ class MakeAuthCommand extends BaseCommand
             $this->info('Updated Routes File.');
 
             file_put_contents(
-                app_path('Laravel/Http/routes.php'),
+                base_path('app/routes.php'),
                 file_get_contents(__DIR__.'/stubs/make/routes.stub'),
                 FILE_APPEND
             );
