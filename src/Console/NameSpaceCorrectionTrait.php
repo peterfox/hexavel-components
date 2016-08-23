@@ -24,7 +24,7 @@ trait NameSpaceCorrectionTrait
         );
 
         $stub = str_replace(
-            'DummyRootNamespace', $this->laravel->getNamespace().'\Laravel', $stub
+            'DummyRootNamespace', $this->laravel->getNamespace().'Laravel\\', $stub
         );
 
         return $this;

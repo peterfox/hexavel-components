@@ -17,7 +17,7 @@ class Application extends BaseApplication {
      *
      * @var string
      */
-    const VERSION = '5.1.23 Hexavel';
+    const VERSION = '5.3.0 Hexavel';
 
     /**
      * Get the path to the application "app" directory.
