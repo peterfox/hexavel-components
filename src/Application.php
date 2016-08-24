@@ -13,13 +13,6 @@ use Illuminate\Foundation\Application as BaseApplication;
 class Application extends BaseApplication {
 
     /**
-     * The Laravel framework version.
-     *
-     * @var string
-     */
-    const VERSION = '5.3.0 Hexavel';
-
-    /**
      * Get the path to the application "app" directory.
      *
      * @return string
@@ -127,5 +120,15 @@ class Application extends BaseApplication {
     public function getCachedServicesPath()
     {
         return $this->bootstrapCachePath().DIRECTORY_SEPARATOR.'services.json';
+    }
+
+    /**
+     * Get the version number of the application.
+     *
+     * @return string
+     */
+    public function version()
+    {
+        return static::VERSION.' Hexavel';
     }
 }
