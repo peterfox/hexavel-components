@@ -34,7 +34,7 @@ class MakeAuthCommand extends BaseCommand
             );
 
             file_put_contents(
-                base_path('app/routes.php'),
+                base_path('app/routes/web.php'),
                 file_get_contents(__DIR__.'/stubs/make/routes.stub'),
                 FILE_APPEND
             );
