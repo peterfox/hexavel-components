@@ -49,7 +49,7 @@ class Application extends BaseApplication {
      */
     public function langPath()
     {
-        return $this->basePath.DIRECTORY_SEPARATOR.'support'.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'lang';
+        return $this->resourcePath().DIRECTORY_SEPARATOR.'lang';
     }
 
     /**
@@ -60,6 +60,16 @@ class Application extends BaseApplication {
     public function storagePath()
     {
         return $this->basePath.DIRECTORY_SEPARATOR.'var';
+    }
+
+    /**
+     * Get the path to the resources directory.
+     *
+     * @return string
+     */
+    public function resourcePath()
+    {
+        return $this->basePath.DIRECTORY_SEPARATOR.'support'.DIRECTORY_SEPARATOR.'resources';
     }
 
     /**
