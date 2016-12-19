@@ -9,6 +9,7 @@
 namespace Hexavel\Console;
 
 use Illuminate\Auth\Console\MakeAuthCommand as BaseCommand;
+use Illuminate\Container\Container;
 
 class MakeAuthCommand extends BaseCommand
 {
@@ -50,12 +51,12 @@ class MakeAuthCommand extends BaseCommand
      */
     protected function createDirectories()
     {
-        if (! is_dir(base_path('support/resources/views/layouts'))) {
-            mkdir(base_path('support/resources/views/layouts'), 0755, true);
+        if (! is_dir(resource_path('views/layouts'))) {
+            mkdir(resource_path('views/layouts'), 0755, true);
         }
 
-        if (! is_dir(base_path('support/resources/views/auth/passwords'))) {
-            mkdir(base_path('support/resources/views/auth/passwords'), 0755, true);
+        if (! is_dir(resource_path('views/auth/passwords'))) {
+            mkdir(resource_path('views/auth/passwords'), 0755, true);
         }
     }
 
@@ -69,22 +70,18 @@ class MakeAuthCommand extends BaseCommand
         foreach ($this->views as $key => $value) {
             copy(
                 __DIR__.'/stubs/make/views/'.$key,
-                base_path('support/resources/views/'.$value)
+                resource_path('views/'.$value)
             );
         }
     }
 
     /**
-     * Compiles the HomeController stub.
+     * Get the application namespace.
      *
      * @return string
      */
-    protected function compileControllerStub()
+    protected function getAppNamespace()
     {
-        return str_replace(
-            '{{namespace}}',
-            $this->getAppNamespace(),
-            file_get_contents(__DIR__.'/stubs/make/controllers/HomeController.stub')
-        );
+        return Container::getInstance()->getNamespace().'Laravel\\';
     }
 }
